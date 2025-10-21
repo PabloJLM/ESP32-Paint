@@ -12,7 +12,7 @@ puerto = None
 WIDTH, HEIGHT = 240, 135
 SCALE = 3
 WINDOW_WIDTH = WIDTH*SCALE + 40
-WINDOW_HEIGHT = HEIGHT*SCALE + 100
+WINDOW_HEIGHT = HEIGHT*SCALE + 200
 
 def resource_path(relative_path):
     try:
@@ -139,7 +139,7 @@ def open_paint_window():
             current_color.set(color_code)
 
     tk.Label(control_frame, text="Color:").pack(side=tk.LEFT)
-    tk.Button(control_frame, text="", command=choose_color).pack(side=tk.LEFT, padx=5)
+    tk.Button(control_frame, text="🎨", command=choose_color).pack(side=tk.LEFT, padx=5)
     tk.Label(control_frame, text="Grosor:").pack(side=tk.LEFT, padx=(10, 0))
     tk.Scale(control_frame, from_=1, to=10, orient=tk.HORIZONTAL, variable=pen_size, length=100).pack(side=tk.LEFT)
 
