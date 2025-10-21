@@ -5,12 +5,21 @@ import serial
 import serial.tools.list_ports
 import time
 import threading
+import sys
+import os
 
 puerto = None
 WIDTH, HEIGHT = 240, 135
-SCALE = 3  # Escala para el canvas
+SCALE = 3
 WINDOW_WIDTH = WIDTH*SCALE + 40
 WINDOW_HEIGHT = HEIGHT*SCALE + 100
+
+def resource_path(relative_path):
+    try:
+        base_path = sys._MEIPASS
+    except Exception:
+        base_path = os.path.abspath(".")
+    return os.path.join(base_path, relative_path)
 
 def center_window(window, width=WINDOW_WIDTH, height=WINDOW_HEIGHT):
     window.update_idletasks()
@@ -161,7 +170,8 @@ center_window(menu_window)
 
 title_logo_frame = tk.Frame(menu_window)
 title_logo_frame.pack(pady=10)
-logo_pil = Image.open("logo4.png").resize((200, 200))  # LOGO-------------------------------------------------------------------------------------------------------
+logo_path = resource_path("logo4.png")  # Usa resource_path para .exe
+logo_pil = Image.open(logo_path).resize((200, 200))
 logo_img = ImageTk.PhotoImage(logo_pil)
 tk.Label(title_logo_frame, text="Paint ESP32", font=("Arial", 20)).pack(side=tk.LEFT, padx=10)
 tk.Label(title_logo_frame, image=logo_img).pack(side=tk.LEFT)
